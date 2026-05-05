@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.env/
+
+# Environment variables
+.env
+.env.*
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Database
+*.sqlite3
+
+# Data (opcional, si no quieres subir datos)
+data/
+
+# Node (por si usas frontend luego)
+node_modules/
+
+# Testing / cache
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
