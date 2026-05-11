@@ -18,6 +18,8 @@ def add_task(task):
     tasks.append(task)
     save_tasks(tasks)
 
+    return f"Task '{task}' added successfully."
+
 def list_tasks():
     tasks = load_tasks()
     if not tasks:
