@@ -91,11 +91,11 @@ def execute_action(action_data, state):
 
         tool_function = tool_data["function"]
 
-        schema = tool_data["schema"]
+        schema = tool_data["schema"] # ahora schema es un objeto de la clase schema, ya que tool_data["schema"] ---> AddTaskInput(BaseModel) / ListTaskInput(BaseModel)
 
-        validated_input = schema(**parameters)
+        validated_input = schema(**parameters) # los dobles ateriscos , lo que hacen es desmpaquetar un diccionario , y convertir {"task_name" : "Estudiar"} en  task_name="Estudiar"
 
-        result = tool_function(**validated_input.model_dump())
+        result = tool_function(**validated_input.model_dump()) # model_dump() es un metodo de pydantic que lo que hace es convertir un objeto validado(que es una clase) de vuelta a un diccionario de python
 
     state["tool_history"].append({
         "tool": action,
