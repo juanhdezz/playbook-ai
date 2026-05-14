@@ -86,13 +86,22 @@ def execute_action(action_data, state):
         result = f"Unknown action: {action}"
 
     else:
-        tool_function = TOOLS[action]["function"]
 
-        result = tool_function(**parameters)
+        tool_data = TOOLS[action]
 
-    state["tool_history"].append(
-        {"tool": action, "parameters": parameters, "result": result}
-    )
+        tool_function = tool_data["function"]
+
+        schema = tool_data["schema"]
+
+        validated_input = schema(**parameters)
+
+        result = tool_function(**validated_input.model_dump())
+
+    state["tool_history"].append({
+        "tool": action,
+        "parameters": parameters,
+        "result": result
+    })
 
     return result
 
