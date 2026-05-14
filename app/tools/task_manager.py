@@ -3,22 +3,26 @@ from pathlib import Path
 
 TASKS_FILE = Path("data/tasks.json")
 
+
 def load_tasks():
     if TASKS_FILE.exists():
         with open(TASKS_FILE, "r") as f:
             return json.load(f)
     return []
 
+
 def save_tasks(tasks):
     with open(TASKS_FILE, "w") as f:
         json.dump(tasks, f, indent=4)
 
-def add_task(task):
+
+def add_task(task_name):
     tasks = load_tasks()
-    tasks.append(task)
+    tasks.append(task_name)
     save_tasks(tasks)
 
-    return f"Task '{task}' added successfully."
+    return f"Task '{task_name}' added successfully."
+
 
 def list_tasks():
     tasks = load_tasks()
@@ -26,4 +30,3 @@ def list_tasks():
         print("No tasks found.")
         return
     return "/n".join([f"- {task}" for task in tasks])
-
